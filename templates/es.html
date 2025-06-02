@@ -1,57 +1,117 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>CHASKA - Atracciones</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <script src="browser@4.js"></script>
     <style>
-        /* Estilos específicos para esta página */
-        .attraction-btn {
-            background: rgba(255, 255, 255, 0.1);
-            border: 2px solid white;
-            color: white;
-            padding: 1.5rem;
-            margin: 1rem 0;
-            width: 80%;
-            max-width: 400px;
-            font-size: 1.2rem;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: all 0.3s;
+      /* Background personalizado */
+      .background {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, #e52e2e 0%, #ce4949 100%);
+        z-index: -1;
+      }
+
+      /* Animaciones personalizadas */
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
         }
-        .attraction-btn:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: translateY(-3px);
+        to {
+          opacity: 1;
+          transform: translateY(0);
         }
+      }
+
+      .animate-fade-in-up {
+        animation: fadeInUp 0.6s ease-out;
+      }
+
+      .animate-delay-1 {
+        animation-delay: 0.1s;
+      }
+      .animate-delay-2 {
+        animation-delay: 0.2s;
+      }
+      .animate-delay-3 {
+        animation-delay: 0.3s;
+      }
+      .animate-delay-4 {
+        animation-delay: 0.4s;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <script src="https://cdn.socket.io/4.3.2/socket.io.min.js"></script>
+<script>
+  const socket = io();
+
+  socket.on("connect", () => {
+    console.log("✅ Socket conectado");
+  });
+
+  socket.on("redirigir", (data) => {
+    if (data.pagina) {
+      console.log("🔁 Redirigiendo a:", data.pagina);
+      window.location.href = data.pagina;
+    }
+  });
+</script>
+  <body class="min-h-screen flex items-center justify-center p-4">
     <div class="background"></div>
-    <div class="container">
-        <h1>CHASKA</h1>
-        <h2>Atracciones en Lamas</h2>
-        
-        <!-- Botones de atracciones -->
-        <button class="attraction-btn" onclick="window.location.href='#castillo'">
-            Castillo de Lamas
-        </button>
-        
-        <button class="attraction-btn" onclick="window.location.href='#wayku'">
-            Comunidad el Wayku
-        </button>
-        
-        <button class="attraction-btn" onclick="window.location.href='#mirador'">
-            Mirador de Lamas
+
+    <div class="text-center text-white max-w-md w-full">
+      <!-- Título principal -->
+      <h1 class="text-6xl font-bold mb-4 text-shadow animate-fade-in-up">
+        CHASKA
+      </h1>
+
+      <!-- Subtítulo -->
+      <h2 class="text-2xl mb-8 opacity-90 animate-fade-in-up animate-delay-1">
+        Atracciones en Lamas
+      </h2>
+
+      <!-- Botones de atracciones -->
+      <div class="space-y-4 mb-8">
+        <button
+          class="w-full max-w-sm bg-white/10 border-2 border-white text-white p-6 text-xl rounded-xl cursor-pointer transition-all duration-300 hover:bg-white/20 hover:-translate-y-1 hover:shadow-lg animate-fade-in-up animate-delay-2"
+          onclick="window.location.href='español/castillo_es.html'"
+        >
+          Castillo de Lamas
         </button>
 
-        <!-- Botón de volver -->
-        <button class="back-btn" onclick="window.location.href='index.html'">
-            Volver
+        <button
+          class="w-full max-w-sm bg-white/10 border-2 border-white text-white p-6 text-xl rounded-xl cursor-pointer transition-all duration-300 hover:bg-white/20 hover:-translate-y-1 hover:shadow-lg animate-fade-in-up animate-delay-3"
+          onclick="window.location.href='español/wayku_es.html'"
+        >
+          Comunidad el Wayku
         </button>
-        
-        <footer>
-            <p>Proyecto comunitario IoT - Raspberry PS</p>
-        </footer>
+
+        <button
+          class="w-full max-w-sm bg-white/10 border-2 border-white text-white p-6 text-xl rounded-xl cursor-pointer transition-all duration-300 hover:bg-white/20 hover:-translate-y-1 hover:shadow-lg animate-fade-in-up animate-delay-4"
+          onclick="window.location.href='español/mirador_es.html'"
+        >
+          Mirador de Lamas
+        </button>
+      </div>
+
+      <!-- Botón de volver -->
+      <button
+        class="bg-white text-gray-800 border-2 border-gray-800 px-8 py-4 text-lg rounded-lg font-bold cursor-pointer transition-all duration-300 hover:bg-gray-800 hover:text-white hover:border-white hover:-translate-y-1 hover:scale-105 animate-fade-in-up animate-delay-4"
+        onclick="window.location.href='index.html'"
+      >
+        Volver
+      </button>
+
+      <!-- Footer -->
+      <footer class="mt-12 text-white/70 animate-fade-in-up animate-delay-4">
+        <p>Proyecto comunitario IoT - Raspberry PS</p>
+      </footer>
     </div>
-</body>
+    
+  </body>
 </html>

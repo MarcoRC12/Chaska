@@ -1,60 +1,57 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CHASKA - Turismo en Lamas</title>
-    <link rel="stylesheet" href="css/styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
-</head>
-<body>
-    <script src="https://cdn.socket.io/4.3.2/socket.io.min.js"></script>
-<script>
-  const socket = io();
-
-  socket.on("connect", () => {
-    console.log("✅ Socket conectado");
-  });
-
-  socket.on("disparar_click_virtual", (data) => {
-    console.log("🔘 GPIO simuló clic en:", data.boton);
-    document.getElementById(data.boton)?.click();
-  });
-
-  socket.on("redirigir", (data) => {
-    if (data.pagina) {
-      console.log("↩️ Redireccionando a:", data.pagina);
-      window.location.href = data.pagina;
-    }
-  });
-</script>
+    <link rel="stylesheet" href="css/styles.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
     <div class="background"></div>
     <div class="container">
-        <!-- Logo con animación de latido -->
-        <img src="assets/img/logo.png" alt="Logo CHASKA" class="logo heartbeat">
+      <!-- Logo con animación de latido -->
+      <img src="../static/assets/img/logo.png" alt="Logo CHASKA" class="logo heartbeat" />
 
-        <!-- Título "CHASKA" encima de los botones -->
-        <h1 class="main-title">CHASKA</h1>
+      <!-- Título "CHASKA" encima de los botones -->
+      <h1 class="main-title">CHASKA</h1>
 
-        <!-- Texto "Bienvenido" dinámico -->
-        <div id="welcome-text" class="welcome-text">Allillanchu!</div>
+      <!-- Texto "Bienvenido" dinámico -->
+      <div id="welcome-text" class="welcome-text">Allillanchu!</div>
 
-        <!-- Botones de idioma -->
-        <div class="buttons">
-            <button class="btn" data-lang="quechua">Quechua</button>
-            <button class="btn" data-lang="es">Español</button>
-            <button class="btn" data-lang="en">Inglés</button>
-        </div>
+      <!-- Botones de idioma -->
+      <div class="buttons">
+        <button
+          class="btn"
+          data-lang="quechua"
+          style="background-color: #f0c905"
+        >
+          Quechua
+        </button>
+        <button class="btn" data-lang="es">Español</button>
+        <button
+          class="btn"
+          data-lang="en"
+          style="background-color: #1976d2; color: #fff"
+        >
+          Inglés
+        </button>
+      </div>
     </div>
 
     <!-- Audio de bienvenida (oculto) -->
-<audio id="welcome-audio">
-    <source src="assets/audio/bienvenida_quechua.mp3" type="audio/mpeg">
-</audio>
+    <audio id="welcome-audio">
+      <source src="../static/assets/audio/bienvenida_quechua.mp3" type="audio/mpeg" />
+    </audio>
 
-        <!-- Indicador de audio (opcional) -->
-    <p id="audio-hint" class="audio-hint">El panel de proximidad tiene que estar funcionando para activar audio</p>
+    <!-- Indicador de audio (opcional) -->
+    <p id="audio-hint" class="audio-hint">
+      El panel de proximidad tiene que estar funcionando para activar audio
+    </p>
 
-    <script src="js/script.js"></script>
-</body>
+    <script src="../static/js/script.js"></script>
+  </body>
 </html>
