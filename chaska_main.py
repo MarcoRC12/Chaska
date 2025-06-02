@@ -81,3 +81,54 @@ if __name__ == "__main__":
     threading.Thread(target=gpio_listener, daemon=True).start()
     threading.Thread(target=sensor_listener, daemon=True).start()
     socketio.run(app, host="0.0.0.0", port=5000)
+
+# Español
+@app.route("/es.html")
+def es():
+    return render_template("es.html")
+
+@app.route("/es/castillo")
+def castillo_es():
+    return render_template("español/castillo_es.html")
+
+@app.route("/es/mirador")
+def mirador_es():
+    return render_template("español/mirador_es.html")
+
+@app.route("/es/wayku")
+def wayku_es():
+    return render_template("español/wayku_es.html")
+
+# Inglés
+@app.route("/en.html")
+def en():
+    return render_template("en.html")
+
+@app.route("/en/castillo")
+def castillo_en():
+    return render_template("ingles/castillo_en.html")
+
+@app.route("/en/mirador")
+def mirador_en():
+    return render_template("ingles/mirador_en.html")
+
+@app.route("/en/wayku")
+def wayku_en():
+    return render_template("ingles/wayku_en.html")
+
+# Quechua
+@app.route("/quechua.html")
+def quechua():
+    return render_template("quechua.html")
+
+@app.route("/quechua/castillo")
+def castillo_quechua():
+    return render_template("quechua/castillo_quechua.html")
+
+@app.route("/quechua/mirador")
+def mirador_quechua():
+    return render_template("quechua/mirador_quechua.html")
+
+@app.route("/quechua/wayku")
+def wayku_quechua():
+    return render_template("quechua/wayku_quechua.html")
