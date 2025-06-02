@@ -7,9 +7,9 @@ from flask_socketio import SocketIO
 from gpiozero import Button
 from adafruit_vl53l0x import VL53L0X
 
-# ====================
+# =====================
 # ⚙️ Configuración base
-# ====================
+# =====================
 app = Flask(__name__)
 socketio = SocketIO(app, async_mode="threading")
 
@@ -17,9 +17,9 @@ socketio = SocketIO(app, async_mode="threading")
 # 🎮 BOTONES FÍSICOS
 # ================
 buttons = {
-    17: "es.html",       # Español
-    27: "quechua.html",  # Quechua
-    22: "en.html"        # Inglés
+    17: "boton1",  # cambiará según vista
+    27: "boton2",
+    22: "boton3"
 }
 gpio_buttons = {pin: Button(pin) for pin in buttons}
 
@@ -27,9 +27,9 @@ def gpio_listener():
     while True:
         for pin, btn in gpio_buttons.items():
             if btn.is_pressed:
-                destino = buttons[pin]
-                print(f"[GPIO] Botón físico activó → {destino}")
-                socketio.emit("redirigir", {"pagina": destino})
+                nombre = buttons[pin]
+                print(f"🔘 GPIO presionado → {nombre}")
+                socketio.emit("presionar_boton", {"id": nombre})
                 time.sleep(0.5)
 
 # ===================
@@ -123,14 +123,12 @@ def mirador_quechua():
 def wayku_quechua():
     return render_template("quechua/wayku_quechua.html")
 
-# Conexión por Socket.IO
+# 🔌 Conexión con navegador
 @socketio.on("connect")
 def cliente_conectado():
     print("🌐 Cliente conectado por Socket.IO")
 
-# ==========================
-# ▶️ Ejecutar aplicación
-# ==========================
+# ▶️ EJECUCIÓN
 if __name__ == "__main__":
     threading.Thread(target=gpio_listener, daemon=True).start()
     threading.Thread(target=sensor_listener, daemon=True).start()

@@ -15,9 +15,9 @@
     <div id="welcome-text" class="welcome-text">Allillanchu!</div>
 
     <div class="buttons">
-      <button class="btn" data-lang="quechua" style="background-color: #f0c905">Quechua</button>
-      <button class="btn" data-lang="es">Español</button>
-      <button class="btn" data-lang="en" style="background-color: #1976d2; color: #fff">Inglés</button>
+      <button id="boton1" class="btn" data-lang="quechua" style="background-color: #f0c905">Quechua</button>
+      <button id="boton2" class="btn" data-lang="es">Español</button>
+      <button id="boton3" class="btn" data-lang="en" style="background-color: #1976d2; color: #fff">Inglés</button>
     </div>
   </div>
 
@@ -38,6 +38,7 @@
       console.log("✅ Socket conectado");
     });
 
+    // 🔁 Redirección desde el sensor (si pasan 5 minutos y alguien se acerca)
     socket.on("redirigir", (data) => {
       if (data.pagina) {
         console.log("🔁 Redirigiendo a:", data.pagina);
@@ -45,6 +46,17 @@
       }
     });
 
+    // 🖱️ Simula clic virtual por GPIO
+    socket.on("presionar_boton", (data) => {
+      const id = data.id;
+      const boton = document.getElementById(id);
+      if (boton) {
+        console.log("🖱️ Clic virtual en:", id);
+        boton.click();
+      }
+    });
+
+    // 🎯 Acciones por botones
     document.querySelectorAll(".btn").forEach((btn) => {
       btn.addEventListener("click", () => {
         const lang = btn.dataset.lang;
