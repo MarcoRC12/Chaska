@@ -1,0 +1,4 @@
+flask
+flask-socketio
+gpiozero
+adafruit-circuitpython-vl53l0x

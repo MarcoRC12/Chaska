@@ -8,6 +8,26 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
+    <script src="https://cdn.socket.io/4.3.2/socket.io.min.js"></script>
+<script>
+  const socket = io();
+
+  socket.on("connect", () => {
+    console.log("✅ Socket conectado");
+  });
+
+  socket.on("disparar_click_virtual", (data) => {
+    console.log("🔘 GPIO simuló clic en:", data.boton);
+    document.getElementById(data.boton)?.click();
+  });
+
+  socket.on("redirigir", (data) => {
+    if (data.pagina) {
+      console.log("↩️ Redireccionando a:", data.pagina);
+      window.location.href = data.pagina;
+    }
+  });
+</script>
     <div class="background"></div>
     <div class="container">
         <!-- Logo con animación de latido -->
