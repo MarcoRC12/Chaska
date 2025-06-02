@@ -29,12 +29,38 @@
       </p>
       <div class="flex justify-center mt-6">
         <button
-          onclick="history.back()"
-          class="px-6 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
-        >
-          Volver
-        </button>
+  id="boton4"
+  onclick="history.back()"
+  class="px-6 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
+>
+  Volver
+</button>
+
       </div>
     </div>
+    <script src="https://cdn.socket.io/4.3.2/socket.io.min.js"></script>
+<script>
+  const socket = io();
+
+  socket.on("connect", () => {
+    console.log("✅ Socket conectado");
+  });
+
+  socket.on("presionar_boton", (data) => {
+    const id = data.id;
+    const boton = document.getElementById(id);
+    if (boton) {
+      console.log("🖱️ Clic virtual en:", id);
+      boton.click();
+    }
+  });
+
+  socket.on("redirigir", (data) => {
+    if (data.pagina) {
+      window.location.href = data.pagina;
+    }
+  });
+</script>
+
   </body>
 </html>
