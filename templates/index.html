@@ -1,109 +1,62 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CHASKA - Turismo en Lamas</title>
-    <link rel="stylesheet" href="../static/css/styles.css" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap"
-      rel="stylesheet"
-    />
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CHASKA - Turismo en Lamas</title>
+  <link rel="stylesheet" href="../static/css/styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <div class="background"></div>
+  <div class="container">
+    <img src="../static/assets/img/logo.png" alt="Logo CHASKA" class="logo heartbeat" />
+    <h1 class="main-title">CHASKA</h1>
+    <div id="welcome-text" class="welcome-text">Allillanchu!</div>
+
+    <div class="buttons">
+      <button class="btn" data-lang="quechua" style="background-color: #f0c905">Quechua</button>
+      <button class="btn" data-lang="es">Español</button>
+      <button class="btn" data-lang="en" style="background-color: #1976d2; color: #fff">Inglés</button>
+    </div>
+  </div>
+
+  <audio id="welcome-audio">
+    <source src="../static/assets/audio/bienvenida_quechua.mp3" type="audio/mpeg" />
+  </audio>
+
+  <p id="audio-hint" class="audio-hint">
+    El panel de proximidad tiene que estar funcionando para activar audio
+  </p>
+
+  <script src="../static/js/script.js"></script>
   <script src="https://cdn.socket.io/4.3.2/socket.io.min.js"></script>
-<script>
-  const socket = io();
+  <script>
+    const socket = io();
 
-  socket.on("connect", () => {
-    console.log("✅ Socket conectado");
-  });
+    socket.on("connect", () => {
+      console.log("✅ Socket conectado");
+    });
 
-  // 🧠 Detecta redirecciones por sensor o botones GPIO físicos
-  socket.on("redirigir", (data) => {
-    if (data.pagina) {
-      console.log("🔁 Redirigiendo a:", data.pagina);
-      window.location.href = data.pagina;
-    }
-  });
-
-  // 🎯 Clics en botones virtuales
-  document.querySelectorAll(".btn").forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const lang = btn.dataset.lang;
-      if (lang === "es") {
-        window.location.href = "es.html";
-      } else if (lang === "en") {
-        window.location.href = "en.html";
-      } else if (lang === "quechua") {
-        window.location.href = "quechua.html";
+    socket.on("redirigir", (data) => {
+      if (data.pagina) {
+        console.log("🔁 Redirigiendo a:", data.pagina);
+        window.location.href = data.pagina;
       }
     });
-  });
-</script>
 
-  <body>
-    <div class="background"></div>
-    <div class="container">
-      <!-- Logo con animación de latido -->
-      <img src="../static/assets/img/logo.png" alt="Logo CHASKA" class="logo heartbeat" />
-
-      <!-- Título "CHASKA" encima de los botones -->
-      <h1 class="main-title">CHASKA</h1>
-
-      <!-- Texto "Bienvenido" dinámico -->
-      <div id="welcome-text" class="welcome-text">Allillanchu!</div>
-
-      <!-- Botones de idioma -->
-      <div class="buttons">
-        <button class="btn" data-lang="quechua" style="background-color: #f0c905">Quechua</button>
-        <button class="btn" data-lang="es">Español</button>
-        <button class="btn" data-lang="en" style="background-color: #1976d2; color: #fff">Inglés</button>
-      </div>
-    </div>
-
-    <!-- Audio de bienvenida (oculto) -->
-    <audio id="welcome-audio">
-      <source src="../static/assets/audio/bienvenida_quechua.mp3" type="audio/mpeg" />
-    </audio>
-
-    <!-- Indicador de audio (opcional) -->
-    <p id="audio-hint" class="audio-hint">
-      El panel de proximidad tiene que estar funcionando para activar audio
-    </p>
-
-    <!-- Tu script original -->
-    <script src="../static/js/script.js"></script>
-
-    <!-- Socket.IO para integración con GPIO y sensor -->
-    <script src="https://cdn.socket.io/4.3.2/socket.io.min.js"></script>
-    <script>
-      const socket = io();
-
-      socket.on("connect", () => {
-        console.log("✅ Socket conectado");
-      });
-
-      // Redirección desde sensor o botón físico
-      socket.on("redirigir", (data) => {
-        if (data.pagina) {
-          console.log("🔁 Redirigiendo a:", data.pagina);
-          window.location.href = data.pagina;
+    document.querySelectorAll(".btn").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const lang = btn.dataset.lang;
+        if (lang === "es") {
+          window.location.href = "es.html";
+        } else if (lang === "en") {
+          window.location.href = "en.html";
+        } else if (lang === "quechua") {
+          window.location.href = "quechua.html";
         }
       });
-
-      // Redirección desde botones virtuales
-      document.querySelectorAll(".btn").forEach((btn) => {
-        btn.addEventListener("click", () => {
-          const lang = btn.dataset.lang;
-          if (lang === "es") {
-            window.location.href = "es.html";
-          } else if (lang === "en") {
-            window.location.href = "en.html";
-          } else if (lang === "quechua") {
-            window.location.href = "quechua.html";
-          }
-        });
-      });
-    </script>
-  </body>
+    });
+  </script>
+</body>
 </html>
