@@ -17,10 +17,10 @@ socketio = SocketIO(app, async_mode="threading")
 # 🎮 BOTONES FÍSICOS
 # ================
 buttons = {
-    17: "boton1", 
-    27: "boton2",  
-    22: "boton3",  
-    23: "boton4"  
+    17: "boton1",  # Castillo
+    27: "boton2",  # Wayku
+    22: "boton3",  # Mirador
+    23: "boton4"   # Volver
 }
 
 gpio_buttons = {pin: Button(pin) for pin in buttons}
