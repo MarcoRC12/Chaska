@@ -10,6 +10,37 @@
       rel="stylesheet"
     />
   </head>
+  <script src="https://cdn.socket.io/4.3.2/socket.io.min.js"></script>
+<script>
+  const socket = io();
+
+  socket.on("connect", () => {
+    console.log("✅ Socket conectado");
+  });
+
+  // 🧠 Detecta redirecciones por sensor o botones GPIO físicos
+  socket.on("redirigir", (data) => {
+    if (data.pagina) {
+      console.log("🔁 Redirigiendo a:", data.pagina);
+      window.location.href = data.pagina;
+    }
+  });
+
+  // 🎯 Clics en botones virtuales
+  document.querySelectorAll(".btn").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const lang = btn.dataset.lang;
+      if (lang === "es") {
+        window.location.href = "es.html";
+      } else if (lang === "en") {
+        window.location.href = "en.html";
+      } else if (lang === "quechua") {
+        window.location.href = "quechua.html";
+      }
+    });
+  });
+</script>
+
   <body>
     <div class="background"></div>
     <div class="container">
@@ -24,21 +55,9 @@
 
       <!-- Botones de idioma -->
       <div class="buttons">
-        <button
-          class="btn"
-          data-lang="quechua"
-          style="background-color: #f0c905"
-        >
-          Quechua
-        </button>
+        <button class="btn" data-lang="quechua" style="background-color: #f0c905">Quechua</button>
         <button class="btn" data-lang="es">Español</button>
-        <button
-          class="btn"
-          data-lang="en"
-          style="background-color: #1976d2; color: #fff"
-        >
-          Inglés
-        </button>
+        <button class="btn" data-lang="en" style="background-color: #1976d2; color: #fff">Inglés</button>
       </div>
     </div>
 
@@ -52,6 +71,39 @@
       El panel de proximidad tiene que estar funcionando para activar audio
     </p>
 
+    <!-- Tu script original -->
     <script src="../static/js/script.js"></script>
+
+    <!-- Socket.IO para integración con GPIO y sensor -->
+    <script src="https://cdn.socket.io/4.3.2/socket.io.min.js"></script>
+    <script>
+      const socket = io();
+
+      socket.on("connect", () => {
+        console.log("✅ Socket conectado");
+      });
+
+      // Redirección desde sensor o botón físico
+      socket.on("redirigir", (data) => {
+        if (data.pagina) {
+          console.log("🔁 Redirigiendo a:", data.pagina);
+          window.location.href = data.pagina;
+        }
+      });
+
+      // Redirección desde botones virtuales
+      document.querySelectorAll(".btn").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const lang = btn.dataset.lang;
+          if (lang === "es") {
+            window.location.href = "es.html";
+          } else if (lang === "en") {
+            window.location.href = "en.html";
+          } else if (lang === "quechua") {
+            window.location.href = "quechua.html";
+          }
+        });
+      });
+    </script>
   </body>
 </html>
