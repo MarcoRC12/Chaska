@@ -1,0 +1,135 @@
+/* Estilos generales */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+    color: white;
+    text-align: center;
+    background-color: #C6353F;
+}
+
+/* Logo con animación de latido */
+.logo {
+    width: 350px;
+    margin-bottom: 1rem;
+    animation: heartbeat 1.5s infinite;
+}
+
+@keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+/* Título fijo */
+.main-title {
+    font-size: 3.5rem;
+    font-weight: 600;
+    margin: 0.5rem 0 1rem 0;
+    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Contenedor de bienvenida */
+.welcome-container {
+    margin: 3.5rem ;
+    height: 120px;
+    position: relative;
+}
+
+/* Texto "Bienvenido" dinámico */
+.welcome-text {
+    font-size: 3.3rem;
+    margin-bottom: 4rem;
+    font-weight: 600;
+    height: 50px;
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: all 0.5s ease-in-out;
+}
+
+.welcome-text.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Botones */
+.buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.btn {
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid white;
+    color: white;
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* Indicador de audio */
+.audio-hint {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.9rem;
+    opacity: 0.7;
+    animation: fadeInOut 3s infinite;
+    display: none; /* Oculto inicialmente */
+}
+
+@keyframes fadeInOut {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+}
+
+/* Estilos para páginas de opciones */
+.options {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin: 2rem 0;
+}
+
+.options button {
+    padding: 1rem;
+    font-size: 1.2rem;
+}
+
+/* Estilos para atracciones */
+.attractions {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.attraction {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 1.5rem;
+    border-radius: 10px;
+}
+
+.back-btn {
+    margin-top: 2rem;
+    background: transparent;
+    border: 1px solid white;
+}
+
+footer {
+    margin-top: 3rem;
+    font-size: 0.8rem;
+    opacity: 0.7;
+}

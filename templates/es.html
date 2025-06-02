@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>CHASKA - Atracciones</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        /* Estilos específicos para esta página */
+        .attraction-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid white;
+            color: white;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            width: 80%;
+            max-width: 400px;
+            font-size: 1.2rem;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .attraction-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-3px);
+        }
+    </style>
+</head>
+<body>
+    <div class="background"></div>
+    <div class="container">
+        <h1>CHASKA</h1>
+        <h2>Atracciones en Lamas</h2>
+        
+        <!-- Botones de atracciones -->
+        <button class="attraction-btn" onclick="window.location.href='#castillo'">
+            Castillo de Lamas
+        </button>
+        
+        <button class="attraction-btn" onclick="window.location.href='#wayku'">
+            Comunidad el Wayku
+        </button>
+        
+        <button class="attraction-btn" onclick="window.location.href='#mirador'">
+            Mirador de Lamas
+        </button>
+
+        <!-- Botón de volver -->
+        <button class="back-btn" onclick="window.location.href='index.html'">
+            Volver
+        </button>
+        
+        <footer>
+            <p>Proyecto comunitario IoT - Raspberry PS</p>
+        </footer>
+    </div>
+</body>
+</html>
