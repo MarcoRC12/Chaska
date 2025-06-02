@@ -41,6 +41,8 @@ def sensor_listener():
     global last_seen, modo_espera
     while True:
         distancia = vl53.range
+        print(f"📏 Distancia medida: {distancia} mm")  # 👈 Esto imprime en consola
+
         actual = time.time()
 
         if distancia < 800:
