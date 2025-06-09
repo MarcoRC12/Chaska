@@ -133,5 +133,5 @@ def cliente_conectado():
 # ▶️ EJECUCIÓN
 if __name__ == "__main__":
     threading.Thread(target=gpio_listener, daemon=True).start()
-    threading.Thread(target=sensor_listener, daemon=True).start()
+    # threading.Thread(target=sensor_listener, daemon=True).start()
     socketio.run(app, host="0.0.0.0", port=5000)
