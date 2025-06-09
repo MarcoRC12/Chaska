@@ -4,38 +4,57 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="../../static/browser@4.js"></script>
+    <link rel="stylesheet" href="../../static/css/styles_mirador.css" />
     <title>Lamas kawaypi</title>
   </head>
   <body class="flex items-center justify-center min-h-screen bg-gray-100">
-    <div class="max-w-2xl mx-auto bg-white rounded-lg shadow-lg p-8">
-      <img
-        src="../../static/mirador.webp"
-        alt="Castillo de Lamas"
-        class="w-full h-64 object-cover rounded-md mb-6 shadow-md"
-      />
-      <h1 class="text-4xl font-bold text-gray-800 mb-6 text-center">
-        Lamas kawaypi
-      </h1>
-      <p class="text-gray-700 mb-4 text-lg text-center">
-        Lamas kawaypi, Amazonanpin sumak kayninta kaway. Kaypi, kamka chuya
-        wayrata samashpa, sachakunata, urkukunata, wasikunapak puka kipakunata
-        ima kaway. Kaypi, kamka samaykita kapiy, punchaw tukuyta kaway, wayra
-        kamwan rimay. Lamas kawayka kawsayta musyaypak kina, maypi naturaleza y
-        tranquilidad tinkun. Kay kawaypi, kamka kawsayta suk ñawpanta rikunki,
-        maypi tukuy ima allin kina.
-      </p>
-      <div class="flex justify-center mt-6">
-        <button
-  id="boton4"
-  onclick="window.location.href='/'"
-  class="px-6 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
->
-  Volver al inicio
-</button>
-
-
-      </div>
+    <div id="subtitle-container" class="subtitles">
+      <div id="subtitle-es" class="subtitle-text "></div>
+      <div id="subtitle-en" class="subtitle-text secondary"></div>
     </div>
+    <audio id="welcome-audio" src="../../static/assets/audio/mirador.mp3" preload="auto"></audio>
+
+    <div class="image-carousel max-w-6xl mx-auto bg-white rounded-lg shadow-lg p-8">
+      <div class="flex flex-col md:flex-row items-center md:items-start gap-6">
+        <div id="carousel-container" class="w-full md:w-1/2 h-64 relative">
+            <img src="../../static/mirador/mirador.webp" alt="Castillo de Lamas" class="carousel-image w-full h-full object-cover rounded-md mb-6 shadow-md">
+            <img src="../../static/mirador/mirador2.jpg" alt="Castillo de Lamas 2" class="carousel-image w-full h-full object-cover rounded-md mb-6 shadow-md" style="display: none;">
+            <img src="../../static/mirador/mirador3.jpg" alt="Castillo de Lamas 3" class="carousel-image w-full h-full object-cover rounded-md mb-6 shadow-md" style="display: none;">
+            <img src="../../static/mirador/mirador4.jpg" alt="Castillo de Lamas 4" class="carousel-image w-full h-full object-cover rounded-md mb-6 shadow-md" style="display: none;">
+            <img src="../../static/mirador/mirador5.jpg" alt="Castillo de Lamas 5" class="carousel-image w-full h-full object-cover rounded-md mb-6 shadow-md" style="display: none;">          
+        </div>
+    <!-- Texto a la derecha -->
+        <div class="w-full md:w-1/2">
+          <h1 class="text-4xl font-bold text-gray-800 mb-6 text-center">
+            Lamas kawaypi
+          </h1>
+          <p id="highlight-text" class="text-gray-700 mb-4 text-lg text-left">
+            <span>Lamas kawaypi, Amazonanpin sumak kayninta</span>
+          <span>kaway. Kaypi, kamka chuya wayrata samashpa,</span>
+          <span>sachakunata, urkukunata, wasikunapak puka</span>
+          <span>kipakunata ima kaway. Kaypi, kamka samaykita</span>
+          <span>kapiy, punchaw tukuyta kaway, wayra kamwan rimay.</span>
+          <span> Lamas kawayka kawsayta musyaypak kina,</span>
+          <span>maypi naturaleza y tranquilidad tinkun. Kay </span>
+          <span>kawaypi, kamka kawsayta suk ñawpanta rikunki,</span>
+          <span>maypi tukuy ima allin kina.</span>
+          </p>
+
+          <div class="flex justify-center mt-6">
+            <button
+              id="boton4"
+              onclick="window.location.href='/'"
+              class="px-6 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
+            >
+              Volver al inicio
+            </button>
+          </div>
+        </div>
+
+    <p id="audio-hint" class="audio-hint">
+    Interactue para que suene el audio
+  </p>
+    <script src="../../static/js/script_mirador_quechua.js"></script>
     <script src="https://cdn.socket.io/4.3.2/socket.io.min.js"></script>
 <script>
   const socket = io();

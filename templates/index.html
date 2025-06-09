@@ -8,23 +8,33 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet" />
 </head>
 <body>
+  <div id="subtitle-container" class="subtitles">
+    <div id="subtitle-quechua" class="subtitle-text"></div>
+    <div id="subtitle-es" class="subtitle-text secondary"></div>
+  </div>
+
   <div class="background"></div>
-  <div class="container">
+  <div class="container flex-container">
+  <!-- Izquierda: Logo, título, bienvenida -->
+  <div class="left-content">
     <img src="../static/assets/img/logo.png" alt="Logo CHASKA" class="logo heartbeat" />
     <h1 class="main-title">CHASKA</h1>
     <div id="welcome-text" class="welcome-text">Allillanchu!</div>
-
-    <div class="buttons">
-      <button id="boton1" class="btn" data-lang="quechua" style="background-color: #f0c905">Quechua</button>
-      <button id="boton2" class="btn" data-lang="es">Español</button>
-      <button id="boton3" class="btn" data-lang="en" style="background-color: #1976d2; color: #fff">Inglés</button>
-    </div>
   </div>
 
-  <audio id="welcome-audio">
-    <source src="../static/assets/audio/bienvenida_quechua.mp3" type="audio/mpeg" />
-  </audio>
+  <!-- Derecha: Botones -->
+  <div class="right-content">
+    <button id="boton1" class="btn btn-large" data-lang="quechua" style="background-color: #f0c905">Quechua</button>
+    <button id="boton2" class="btn btn-large" data-lang="es">Español</button>
+    <button id="boton3" class="btn btn-large" data-lang="en" style="background-color: #1976d2; color: #fff">Inglés</button>
+  </div>
+</div>
 
+
+  <audio id="welcome-audio">
+    <source src="../static/assets/audio/bienvenida.mp3" type="audio/mpeg" />
+  </audio>
+  
   <p id="audio-hint" class="audio-hint">
     El panel de proximidad tiene que estar funcionando para activar audio
   </p>

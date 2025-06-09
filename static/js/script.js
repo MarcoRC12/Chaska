@@ -1,4 +1,3 @@
-
 // En tu script.js original (página principal)
 document.querySelectorAll('.btn').forEach(btn => {
     btn.addEventListener('click', () => {
@@ -8,6 +7,28 @@ document.querySelectorAll('.btn').forEach(btn => {
 });
 
 document.addEventListener('DOMContentLoaded', () => {
+    // subitutlos
+    const subtitles = [
+        { start: 0, end: 7, quechua: "Ñuka Chaska, kanpa pushak digita kanchi El Wayku Ayllupi", es: "Hola Soy Chaska, tu guía digital en la comunidad El Wayku!" },
+        { start: 7, end: 20, quechua: "Kaypi kani, kanman willanampa, maykan kananmanta, ñuka llakta El Wayku Warmakunamanta.", es: "Estoy aqui para contarte sobre nuestros lugares mágicos, Bienvenido, viajero! Siente la energía de Lamas." },
+        { start: 20, end: 31, quechua: "¡Allinmi, purik runa! Lamas kallpata muskay, chaymanta kaypi kananmanta mana kunkayuk kananpak.", es: "Y prepárate para una experiencia inolvidable" },
+    ];
+    const subtitleQuechua = document.getElementById('subtitle-quechua');
+    const subtitleEs = document.getElementById('subtitle-es');
+    const audiosub = document.getElementById('welcome-audio');
+
+    audiosub.addEventListener('timeupdate', () => {
+        const currentTime = audio.currentTime;
+        const subtitle = subtitles.find(s => currentTime >= s.start && currentTime < s.end);
+        if (subtitle) {
+        subtitleQuechua.textContent = subtitle.quechua;
+        subtitleEs.textContent = subtitle.es;
+        } else {
+            subtitleQuechua.textContent = '';
+            subtitleEs.textContent = '';
+        }
+    });
+
     // ===== AUDIO DE BIENVENIDA ===== //
     const audio = document.getElementById('welcome-audio');
     const audioHint = document.getElementById('audio-hint');

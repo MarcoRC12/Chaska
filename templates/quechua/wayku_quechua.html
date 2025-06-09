@@ -5,38 +5,54 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="../../static/browser@4.js"></script>
     <title>El Wayku ayllupi</title>
+    <link rel="stylesheet" href="../../static/css/styles_wayku.css" />
   </head>
   <body class="flex items-center justify-center min-h-screen bg-gray-100">
-    <div class="max-w-2xl mx-auto bg-white rounded-lg shadow-lg p-8">
-      <img
-        src="../../static/wayku.webp"
-        alt="Comunidad el Wayku"
-        class="w-full h-64 object-cover rounded-md mb-6 shadow-md"
-      />
+    
+    <div id="subtitle-container" class="subtitles">
+      <div id="subtitle-es" class="subtitle-text "></div>
+      <div id="subtitle-en" class="subtitle-text secondary"></div>
+    </div>
+    <audio id="welcome-audio" src="../../static/assets/audio/wayku-2.mp3" preload="auto"></audio>
+
+    <div class="image-carousel max-w-6xl mx-auto bg-white rounded-lg shadow-lg p-8">
+      <div class="flex flex-col md:flex-row items-center md:items-start gap-6">
+        <div id="carousel-container" class="w-full md:w-1/2 h-64 relative">
+            <img src="../../static/ciudadwayku/wayku.webp" alt="Castillo de Lamas" class="carousel-image w-full h-full object-cover rounded-md mb-6 shadow-md">
+            <img src="../../static/ciudadwayku/wayku1.jpg" alt="Castillo de Lamas 2" class="carousel-image w-full h-full object-cover rounded-md mb-6 shadow-md" style="display: none;">
+            <img src="../../static/ciudadwayku/wayku2.jpg" alt="Castillo de Lamas 3" class="carousel-image w-full h-full object-cover rounded-md mb-6 shadow-md" style="display: none;">
+
+      </div>
+
+      <div class="w-full md:w-1/2">
       <h1 class="text-4xl font-bold text-gray-800 mb-6 text-center">
         El Wayku ayllupi
       </h1>
-      <p class="text-gray-700 mb-4 text-lg text-center">
-        El Wayku ayllupi, Lamas kawsayta kawsa. Kaypi, kamka quechua-lamista
-        runakunawan Kawasaki. Kaypi, kamka uyarinki ñawpa rimayta, rikunki
-        achakuna pachakunata, ritwalta, tushuyta, mikuyta ima. El Wayku aylluka
-        turismo chikanmanta kananpak kina, shunkuykita llakichin. "El Wayku
-        ayllupi, Lamas kawsayta kawsak. Kaypi, kamka uyarinki ñawpa rimayta,
-        rikunki 'pachakuna pachakunata, ritwalta, tushuyta, mikuyta ima. El
-        Wayku aylluka turismo chikanmanta kananpak kina, shunkuykita llakichin.
+      <p id="highlight-text" class="text-gray-700 mb-4 text-lg text-left">
+        <span>El Wayku ayllupi, Lamas kawsayta kawsa. Kaypi, kamka quechua-lamista</span>
+        <span>runakunawan Kawasaki. Kaypi, kamka uyarinki ñawpa rimayta, rikunki</span>
+          <span>achakuna pachakunata, ritwalta, tushuyta, mikuyta ima. El Wayku aylluka </span>
+          <span>turismo chikanmanta kananpak kina, shunkuykita llakichin. "El Wayku ayllupi Lamas,</span>
+          <span> kawsayta kawsak. Kaypi, kamka uyarinki ñawpa rimayta, rikunki </span>
+          <span>'pachakuna pachakunata, ritwalta, tushuyta, mikuyta ima. El Wayku aylluka </span>
+          <span>turismo chikanmanta kananpak kina, shunkuykita llakichin.</span>
       </p>
       <div class="flex justify-center mt-6">
         <button
-  id="boton4"
-  onclick="window.location.href='/'"
-  class="px-6 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
->
+          id="boton4"
+          onclick="window.location.href='/'"
+          class="px-6 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
+        >
   Volver al inicio
 </button>
 
 
       </div>
     </div>
+    <p id="audio-hint" class="audio-hint">
+    Interactue para que suene el audio
+  </p>
+    <script src="../../static/js/script_wayku_quechua.js"></script>
     <script src="https://cdn.socket.io/4.3.2/socket.io.min.js"></script>
 <script>
   const socket = io();
