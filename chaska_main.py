@@ -37,35 +37,35 @@ def gpio_listener():
 # ===================
 # 📡 SENSOR DE DISTANCIA
 # ===================
-i2c = busio.I2C(board.SCL, board.SDA)
-vl53 = VL53L0X(i2c)
-last_seen = time.time()
-modo_espera = False
+# i2c = busio.I2C(board.SCL, board.SDA)
+# vl53 = VL53L0X(i2c)
+# last_seen = time.time()
+# modo_espera = False
 
-def sensor_listener():
-    global last_seen, modo_espera
-    while True:
-        distancia = vl53.range
+# def sensor_listener():
+#     global last_seen, modo_espera
+#     while True:
+#         distancia = vl53.range
 
-        if distancia == 8190:
-            print("⚠️ Fuera de rango o sin detección")
-            time.sleep(1)
-            continue
+#         if distancia == 8190:
+#             print("⚠️ Fuera de rango o sin detección")
+#             time.sleep(1)
+#             continue
 
-        print(f"📏 Distancia medida: {distancia} mm")
-        actual = time.time()
+#         print(f"📏 Distancia medida: {distancia} mm")
+#         actual = time.time()
 
-        if distancia < 800:
-            if modo_espera or actual - last_seen > 300:
-                print("👤 Detección tras inactividad → Redirigir a index.html")
-                socketio.emit("redirigir", {"pagina": "index.html"})
-                modo_espera = False
-            last_seen = actual
-        else:
-            if actual - last_seen > 300:
-                modo_espera = True
+#         if distancia < 800:
+#             if modo_espera or actual - last_seen > 300:
+#                 print("👤 Detección tras inactividad → Redirigir a index.html")
+#                 socketio.emit("redirigir", {"pagina": "index.html"})
+#                 modo_espera = False
+#             last_seen = actual
+#         else:
+#             if actual - last_seen > 300:
+#                 modo_espera = True
 
-        time.sleep(1)
+#         time.sleep(1)
 
 # ============
 # 🌐 RUTAS WEB
