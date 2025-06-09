@@ -1,13 +1,11 @@
 import time
 import threading
+import board
+import busio
 from flask import Flask, render_template
 from flask_socketio import SocketIO
-
-# Comentadas las importaciones que requieren hardware Raspberry Pi
-# import board
-# import busio
-# from gpiozero import Button
-# from adafruit_vl53l0x import VL53L0X
+from gpiozero import Button
+from adafruit_vl53l0x import VL53L0X
 
 # =====================
 # ⚙️ Configuración base
@@ -16,57 +14,58 @@ app = Flask(__name__)
 socketio = SocketIO(app, async_mode="threading")
 
 # ================
-# 🎮 BOTONES FÍSICOS (desactivados)
+# 🎮 BOTONES FÍSICOS
 # ================
-# buttons = {
-#     17: "boton1",  # Castillo
-#     27: "boton2",  # Wayku
-#     22: "boton3",  # Mirador
-#     23: "boton4"   # Volver
-# }
-# gpio_buttons = {pin: Button(pin) for pin in buttons}
+buttons = {
+    17: "boton1",  # Castillo
+    27: "boton2",  # Wayku
+    22: "boton3",  # Mirador
+    23: "boton4"   # Volver
+}
 
-# def gpio_listener():
-#     while True:
-#         for pin, btn in gpio_buttons.items():
-#             if btn.is_pressed:
-#                 nombre = buttons[pin]
-#                 print(f"🔘 GPIO presionado → {nombre}")
-#                 socketio.emit("presionar_boton", {"id": nombre})
-#                 time.sleep(0.5)
+gpio_buttons = {pin: Button(pin) for pin in buttons}
+
+def gpio_listener():
+    while True:
+        for pin, btn in gpio_buttons.items():
+            if btn.is_pressed:
+                nombre = buttons[pin]
+                print(f"🔘 GPIO presionado → {nombre}")
+                socketio.emit("presionar_boton", {"id": nombre})
+                time.sleep(0.5)
 
 # ===================
-# 📡 SENSOR DE DISTANCIA (desactivado)
+# 📡 SENSOR DE DISTANCIA
 # ===================
-# i2c = busio.I2C(board.SCL, board.SDA)
-# vl53 = VL53L0X(i2c)
-# last_seen = time.time()
-# modo_espera = False
+i2c = busio.I2C(board.SCL, board.SDA)
+vl53 = VL53L0X(i2c)
+last_seen = time.time()
+modo_espera = False
 
-# def sensor_listener():
-#     global last_seen, modo_espera
-#     while True:
-#         distancia = vl53.range
+def sensor_listener():
+    global last_seen, modo_espera
+    while True:
+        distancia = vl53.range
 
-#         if distancia == 8190:
-#             print("⚠️ Fuera de rango o sin detección")
-#             time.sleep(1)
-#             continue
+        if distancia == 8190:
+            print("⚠️ Fuera de rango o sin detección")
+            time.sleep(1)
+            continue
 
-#         print(f"📏 Distancia medida: {distancia} mm")
-#         actual = time.time()
+        print(f"📏 Distancia medida: {distancia} mm")
+        actual = time.time()
 
-#         if distancia < 800:
-#             if modo_espera or actual - last_seen > 300:
-#                 print("👤 Detección tras inactividad → Redirigir a index.html")
-#                 socketio.emit("redirigir", {"pagina": "index.html"})
-#                 modo_espera = False
-#             last_seen = actual
-#         else:
-#             if actual - last_seen > 300:
-#                 modo_espera = True
+        if distancia < 800:
+            if modo_espera or actual - last_seen > 300:
+                print("👤 Detección tras inactividad → Redirigir a index.html")
+                socketio.emit("redirigir", {"pagina": "index.html"})
+                modo_espera = False
+            last_seen = actual
+        else:
+            if actual - last_seen > 300:
+                modo_espera = True
 
-#         time.sleep(1)
+        time.sleep(1)
 
 # ============
 # 🌐 RUTAS WEB
@@ -133,7 +132,6 @@ def cliente_conectado():
 
 # ▶️ EJECUCIÓN
 if __name__ == "__main__":
-    # Desactivados hilos de hardware para Windows
-    # threading.Thread(target=gpio_listener, daemon=True).start()
-    # threading.Thread(target=sensor_listener, daemon=True).start()
+    threading.Thread(target=gpio_listener, daemon=True).start()
+    threading.Thread(target=sensor_listener, daemon=True).start()
     socketio.run(app, host="0.0.0.0", port=5000)
