@@ -31,43 +31,55 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // ===== AUDIO DE BIENVENIDA ===== //
     const audio = document.getElementById('welcome-audio');
+    const backgroundAudio = document.getElementById('background-music');
     const audioHint = document.getElementById('audio-hint');
     audio.volume = 0.5;
+    backgroundAudio.volume = 0.1;
     audioHint.style.display = 'none';
 
     // Función para reproducir el audio (con reinicio automático)
     const playAudio = () => {
-        audio.play()
-            .then(() => {
-                console.log("Audio reproducido");
-                audioHint.style.display = 'none';
-                
-                // Configurar reinicio cuando termine el audio
-                audio.addEventListener('ended', () => {
-                    audio.currentTime = 0; // Rebobinar al inicio
-                    audio.play().catch(e => console.log("Error al relanzar audio:", e));
-                }, { once: true });
-            })
-            .catch(e => {
-                console.log("Audio bloqueado. Esperando interacción...");
-                audioHint.style.display = 'block';
-                
-                const enableAudio = () => {
-                    audio.play();
-                    audioHint.style.display = 'none';
-                    document.removeEventListener('click', enableAudio);
-                    document.removeEventListener('keydown', enableAudio);
-                    
-                    // Configurar reinicio post-interacción
-                    audio.addEventListener('ended', () => {
-                        audio.currentTime = 0;
-                        audio.play().catch(e => console.log("Error al relanzar audio:", e));
-                    }, { once: true });
-                };
-                
-                document.addEventListener('click', enableAudio);
-                document.addEventListener('keydown', enableAudio);
+    // Audio de bienvenida
+    audio.play()
+        .then(() => {
+            console.log("🔊 Audio de bienvenida reproducido");
+            audioHint.style.display = 'none';
+
+            // Reinicio automático solo para el de bienvenida
+            audio.addEventListener('ended', () => {
+                audio.currentTime = 0;
+                audio.play().catch(e => console.log("Error al reiniciar bienvenida:", e));
+            }, { once: true });
+
+            // Reproducir música de fondo
+            backgroundAudio.play().then(() => {
+                console.log("🎵 Música de fondo activada");
+            }).catch(() => {
+                console.log("⚠️ Música de fondo bloqueada");
             });
+
+        })
+        .catch(e => {
+            console.log("⚠️ Audio bloqueado. Esperando interacción...");
+            audioHint.style.display = 'block';
+
+            const enableAudio = () => {
+                audio.play();
+                backgroundAudio.play();
+
+                audioHint.style.display = 'none';
+                document.removeEventListener('click', enableAudio);
+                document.removeEventListener('keydown', enableAudio);
+
+                audio.addEventListener('ended', () => {
+                    audio.currentTime = 0;
+                    audio.play().catch(e => console.log("Error al reiniciar bienvenida:", e));
+                }, { once: true });
+            };
+
+            document.addEventListener('click', enableAudio);
+            document.addEventListener('keydown', enableAudio);
+        });
     };
 
     // Reproducir al cargar y cuando la página gana foco

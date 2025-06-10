@@ -13,7 +13,7 @@
     <div id="subtitle-es" class="subtitle-text secondary"></div>
   </div>
 
-  <div class="background"></div>
+  <!-- <div class="background"></div> -->
   <div class="container flex-container">
   <!-- Izquierda: Logo, título, bienvenida -->
   <div class="left-content">
@@ -24,16 +24,19 @@
 
   <!-- Derecha: Botones -->
   <div class="right-content">
-    <button id="boton1" class="btn btn-large" data-lang="quechua" style="background-color: #f0c905">Quechua</button>
-    <button id="boton2" class="btn btn-large" data-lang="es">Español</button>
-    <button id="boton3" class="btn btn-large" data-lang="en" style="background-color: #1976d2; color: #fff">English</button>
+    <button id="boton1" class="btn btn-large" data-lang="quechua" style="background-color: #333ee4">Quechua</button>
+    <button id="boton2" class="btn btn-large" data-lang="es" style="background-color: #dbd647">Español</button>
+    <button id="boton3" class="btn btn-large" data-lang="en" style="background-color: #e73a3a; color: #fff">Inglés</button>
   </div>
 </div>
 
-.
+
   <audio id="welcome-audio">
     <source src="../static/assets/audio/bienvenida.mp3" type="audio/mpeg" />
   </audio>
+
+  <audio id="background-music" src="../static/assets/audio/pandilla.mp3" loop></audio>
+
   
   <p id="audio-hint" class="audio-hint">
     El panel de proximidad tiene que estar funcionando para activar audio
@@ -79,7 +82,7 @@
         }
       });
     });
+    
   </script>
-  <script src="../static/js/reinicio.js"></script>  
 </body>
 </html>

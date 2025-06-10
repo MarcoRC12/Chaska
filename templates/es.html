@@ -115,11 +115,36 @@
       >
         Volver
       </button>
-
+      <audio id="background-music" src="../static/assets/audio/pandilla.mp3" loop></audio>
       <!-- Footer -->
       <footer class="mt-12 text-white/70 animate-fade-in-up animate-delay-4">
         <p>Proyecto comunitario IoT - Raspberry PS</p>
       </footer>
     </div>
   </body>
+  <script>
+    
+  document.addEventListener('DOMContentLoaded', () => {
+    const audio = document.getElementById('background-music');
+
+    // Establecer volumen bajo si deseas
+    audio.volume = 0.1;
+
+    // Intentar reproducir si ya hubo interacción
+    const tryPlay = () => {
+      audio.play().then(() => {
+        console.log("🎵 Música de fondo activada");
+      }).catch(() => {
+        console.log("⚠️ Esperando interacción para reproducir música");
+      });
+
+      document.removeEventListener('click', tryPlay);
+      document.removeEventListener('keydown', tryPlay);
+    };
+
+    // Escucha el primer clic o tecla para habilitar la música
+    document.addEventListener('click', tryPlay);
+    document.addEventListener('keydown', tryPlay);
+  });
+  </script>
 </html>

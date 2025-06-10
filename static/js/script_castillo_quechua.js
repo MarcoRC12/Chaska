@@ -82,6 +82,7 @@ const highlights = [
       function updateSubtitles() {
     const currentTime = audio.currentTime;
     const subtitle = subtitles.find(s => currentTime >= s.start && currentTime < s.end);
+    
     if (subtitle) {
       subtitleEn.textContent = subtitle.ingles;
       subtitleEs.textContent = subtitle.es;
