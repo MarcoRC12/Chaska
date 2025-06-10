@@ -7,7 +7,7 @@ function iniciarReinicio() {
   reinicioTimeout = setTimeout(() => {
     console.log("⏳ Inactividad detectada → Redirigiendo a inicio");
     window.location.href = "/";
-  }, 1 * 60 * 1000); // 2 minutos en milisegundos
+  }, 5 * 60 * 1000); // 2 minutos en milisegundos
 }
 
 // Escucha evento del sensor o movimiento
